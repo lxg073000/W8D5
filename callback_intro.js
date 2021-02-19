@@ -4,6 +4,10 @@ class MyClocky {
     this.hours = ourTime.getHours();
     this.minutes = ourTime.getMinutes();
     this.seconds = ourTime.getSeconds();
+    
+    setInterval(this._tick.bind(this), 1000);
+    this.printTime();
+
   }
 
   printTime() {
@@ -28,7 +32,28 @@ class MyClocky {
   }
 }
 
-const ourClock = new MyClocky();
-ourClock.printTime();
-setInterval(ourClock._tick(), 1000);
-ourClock.printTime();
+// let ourClock = new MyClocky();
+
+Array.prototype.addNumbers = function() { 
+  let total = this[0]
+
+  for (let i = 0; i < this.length-1; i++) {
+
+    // let partialSum = 0
+
+    // partialSum = this[i] + this[i+1]
+    // console.log(partialSum)
+
+    total += this[i+1]; 
+    console.log(total + " ourpartials")
+  };
+
+  console.log(total + " ourtotal")
+};
+
+arr = [1,2,3,4,5,6,7,8].addNumbers();
+
+
+
+
+
