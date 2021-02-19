@@ -4,10 +4,9 @@ class MyClocky {
     this.hours = ourTime.getHours();
     this.minutes = ourTime.getMinutes();
     this.seconds = ourTime.getSeconds();
-    
+
     setInterval(this._tick.bind(this), 1000);
     this.printTime();
-
   }
 
   printTime() {
@@ -34,26 +33,80 @@ class MyClocky {
 
 // let ourClock = new MyClocky();
 
-Array.prototype.addNumbers = function() { 
-  let total = this[0]
+// Array.prototype.addNumbers = function() {
+//   let total = this[0]
 
-  for (let i = 0; i < this.length-1; i++) {
+//   for (let i = 0; i < this.length-1; i++) {
 
-    // let partialSum = 0
+//     total += this[i+1];
+//     console.log(total + " ourpartials")
+//   };
 
-    // partialSum = this[i] + this[i+1]
-    // console.log(partialSum)
+//   console.log(total + " ourtotal")
+// };
 
-    total += this[i+1]; 
-    console.log(total + " ourpartials")
-  };
+const readline = require("readline");
 
-  console.log(total + " ourtotal")
-};
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-arr = [1,2,3,4,5,6,7,8].addNumbers();
+function addNumbers(sum, numsLeft, completionCallback) {
+  if (numsLeft > 0) {
+    reader.question("ENTER a number to add ", function(numInput)
+    {
+      let toAdd = parseInt(numInput);
+      sum += toAdd;
+      console.log(`Partial sum: ${sum}`);
+      numsLeft -= 1;
+      addNumbers(sum, numsLeft, completionCallback);
+    });
+  } else {
+    completionCallback(sum);
+  }
+}
+
+function completionCallback(sum) {
+  reader.close();
+  console.log(`Total sum: ${sum}`);
+}
+
+addNumbers(0, 4, completionCallback);
+
+// function addNumbers(sum, numsLeft, completionCallback) {
+//   if (numsLeft > 0) {
+//     reader.question("ENTER a number to add ", (numInput) => {
+//       let toAdd = parseInt(numInput);
+//       sum += toAdd;
+//       console.log(`Partial sum: ${sum}`);
+//       numsLeft -= 1;
+//       addNumbers(sum, numsLeft, completionCallback);
+//     });
+//   } else {
+//     completionCallback(sum);
+//   }
+// }
+
+// function completionCallback(sum) {
+//   reader.close();
+//   console.log(`Total sum: ${sum}`);
+// }
 
 
+const readline2 = require("readline");
 
+const reader2 = readline2.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
+function askIfGreaterThan(el1, el2, callback){
+  reader2.question(`ENTER 'yes' OR 'no" :: is ${el1} > ${el2}?`, (answer) => {
+  
+    if (el1 > el2 && answer === "yes"){
+      return true;
+    }
 
+  });
+}
